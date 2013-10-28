@@ -15,7 +15,9 @@ ActiveAdmin.register Asset do
     column :bar_code
     column :asset_type
     column :status
-    column :user
+    column :user do |a|
+      a.user.try &:first_name
+    end
     column :serial_number
 
     default_actions

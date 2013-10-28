@@ -8,4 +8,23 @@ class Asset < ActiveRecord::Base
 
   validates :status, :asset_type,
             :presence => true
+
+  def self.by_bar_code(bar_code)
+    where(:bar_code =>  bar_code).first
+  end
+
+  def assigned_to?(user)
+    user.assets.include?(self)
+  end
+
+  def unassign!
+    self.user_id = nil
+    self.project_id = nil
+    self.save!
+  end
+
+  def assign!(user)
+    self.user = user
+    self.save!
+  end
 end

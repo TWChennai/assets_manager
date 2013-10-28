@@ -77,8 +77,6 @@ GEM
     formtastic (2.3.0.rc2)
       actionpack (>= 3.0)
     fssm (0.2.10)
-    haml (4.0.3)
-      tilt
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -173,7 +171,6 @@ DEPENDENCIES
   activeadmin!
   coffee-rails (~> 4.0.0)
   compass-rails
-  haml
   jquery-rails
   pg
   protected_attributes

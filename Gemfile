@@ -14,4 +14,3 @@ gem 'jquery-rails'
 
 gem 'compass-rails'
 gem 'zurb-foundation', '~> 4.0.0'
-gem 'haml'
