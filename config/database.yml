@@ -17,7 +17,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: tw_assets_manager_production
+  database: tw_asset_manager
   pool: 5
-  username:
+  username: tw_asset_manager
   password:

@@ -4,6 +4,7 @@ gem 'rails', '4.0.0'
 gem 'pg'
 gem 'turbolinks'
 gem 'puma'
+gem "capistrano", '~> 2.15.5'
 gem 'activeadmin', :git => 'https://github.com/gregbell/active_admin.git'
 gem 'protected_attributes'
 
