@@ -5,6 +5,7 @@ ActiveAdmin.register Asset do
       f.input :serial_number
       f.input :asset_type
       f.input :status, :as => :select, :collection => Asset::VALID_STATUSES
+      f.input :user
       f.input :description
     end
 
@@ -16,7 +17,7 @@ ActiveAdmin.register Asset do
     column :asset_type
     column :status
     column :user do |a|
-      a.user.try &:first_name
+      a.user.try &:name
     end
     column :serial_number
 
