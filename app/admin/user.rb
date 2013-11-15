@@ -2,8 +2,7 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs 'Details' do
-      f.input :first_name
-      f.input :last_name
+      f.input :name
       f.input :employee_id
     end
   end
@@ -12,8 +11,7 @@ ActiveAdmin.register User do
     attributes_table do
       row :id
       row :employee_id
-      row :first_name
-      row :last_name
+      row :name
     end
 
     table_for user.assets do
