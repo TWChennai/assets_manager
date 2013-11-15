@@ -9,6 +9,11 @@ class Asset < ActiveRecord::Base
   validates :status, :asset_type,
             :presence => true
 
+  def user_id=(value)
+    super(value)
+    self.status = 'Assigned' if value.present?
+  end
+
   def self.by_bar_code(bar_code)
     where(:bar_code =>  bar_code).first
   end
