@@ -1,5 +1,5 @@
 class Asset < ActiveRecord::Base
-  attr_accessible :description, :status, :asset_type_id, :employee_id, :bar_code, :serial_number
+  attr_accessible :description, :status, :asset_type_id, :employee_id, :bar_code, :serial_number, :user_id
   belongs_to :asset_type
   belongs_to :user
   belongs_to :project
