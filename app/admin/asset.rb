@@ -4,6 +4,7 @@ ActiveAdmin.register Asset do
       f.input :bar_code
       f.input :serial_number
       f.input :asset_type
+      f.input :brand
       f.input :status, :as => :select, :collection => Asset::VALID_STATUSES
       f.input :user
       f.input :description
@@ -16,6 +17,7 @@ ActiveAdmin.register Asset do
     column :bar_code
     column :asset_type
     column :status
+    column :brand
     column :user do |a|
       a.user.try &:name
     end
