@@ -8,10 +8,10 @@ class HomeController < ApplicationController
 
       if asset.assigned_to?(user)
         asset.unassign!
-        flash[:success] = "Assigned to #{user.first_name}"
+        flash[:success] = "Unassigned from #{user.name}"
       else
         asset.assign!(user)
-        flash[:success] = "Unassigned from #{user.first_name}"
+        flash[:success] = "Assigned to #{user.name}"
       end
 
     end
