@@ -24,4 +24,8 @@ ActiveAdmin.register Asset do
     default_actions
   end
 
+  action_item :only => :show do
+    link_to 'Add an Asset', new_admin_asset_path
+  end
+
 end
