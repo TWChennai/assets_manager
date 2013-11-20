@@ -10,8 +10,8 @@ class HomeController < ApplicationController
         asset.unassign!
         flash[:success] = "Unassigned from #{user.name}"
       else
-        asset.assign!(user)
-        flash[:success] = "Assigned to #{user.name}"
+        asset.assign!(user, project)
+        flash[:success] = "Assigned to #{asset.owner.name}"
       end
 
     end
@@ -39,5 +39,9 @@ class HomeController < ApplicationController
 
   def asset
     @asset ||= Asset.by_bar_code(params[:asset_bar_code])
+  end
+
+  def project
+    @project ||= (params[:project_id] && Project.where(:id => params[:project_id]).first)
   end
 end

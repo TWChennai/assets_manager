@@ -3,8 +3,9 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs 'Details' do
       f.input :name
-      f.input :employee_id
+      f.input :employee_id, :label => 'Employee ID'
     end
+    f.actions
   end
 
   show do

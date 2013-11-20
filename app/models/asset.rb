@@ -29,8 +29,13 @@ class Asset < ActiveRecord::Base
     self.save!
   end
 
-  def assign!(user)
+  def assign!(user, project)
     self.user = user
+    self.project = project
     self.save!
+  end
+
+  def owner
+    project || user
   end
 end
