@@ -10,6 +10,10 @@ class Asset < ActiveRecord::Base
   validates :status, :asset_type,
             :presence => true
 
+  def self.assigned_to_individuals
+    where(:project_id => nil)
+  end
+
   def user_id=(value)
     super(value)
     self.status = 'Assigned' if value.present?
@@ -37,5 +41,9 @@ class Asset < ActiveRecord::Base
 
   def owner
     project || user
+  end
+
+  def name
+    "#{asset_type.name} - #{bar_code}"
   end
 end

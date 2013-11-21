@@ -1,5 +1,8 @@
 ActiveAdmin.register User do
 
+  filter :name
+  filter :employee_id, :label => 'Employee ID'
+
   form do |f|
     f.inputs 'Details' do
       f.input :name
@@ -8,10 +11,17 @@ ActiveAdmin.register User do
     f.actions
   end
 
+  index do
+    column :id
+    column :employee_id
+    column :name
+    default_actions
+  end
+
   show do
     attributes_table do
       row :id
-      row :employee_id
+      row('Employee ID') { user.employee_id }
       row :name
     end
 

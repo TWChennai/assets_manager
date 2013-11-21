@@ -18,7 +18,7 @@
         <label for="right-label" class="right inline">Employee ID</label>
       </div>
       <div class="small-9 columns">
-        <input type="text" name="employee_id" placeholder="Employee ID">
+        <%= text_field_tag :employee_id, params[:employee_id], :placeholder => 'Employee ID' %>
       </div>
     </div>
     <div class="row">
@@ -26,7 +26,7 @@
         <label for="right-label" class="right inline">Asset Barcode</label>
       </div>
       <div class="small-9 columns">
-        <input type="text" name="asset_bar_code" placeholder="Scan Asset Barcode">
+        <%= text_field_tag :asset_bar_code, params[:asset_bar_code], :placeholder => 'Scan Asset Barcode' %>
       </div>
     </div>
     <div class="row">
@@ -34,12 +34,18 @@
         <label for="right-label" class="right inline">Assign to Project (Optional)</label>
       </div>
       <div class="small-9 columns">
-        <%= select_tag 'project', options_from_collection_for_select(@projects, :id, :name), :include_blank => true %>
+        <%= select_tag 'project_id', options_from_collection_for_select(@projects, :id, :name), :include_blank => true %>
       </div>
     </div>
     <div class="row">
-      <div class="small-12 columns text-center">
-        <input type="Submit" name="submit" placeholder="Submit" class="button">
+      <div class="small-4 columns text-center">
+        <input type="submit" name="submit" class="button" value="Take For Yourself">
+      </div>
+      <div class="small-4 columns text-center">
+        <input type="submit" name="submit" class="button" value="Return">
+      </div>
+      <div class="small-4 columns text-center">
+        <input type="submit" name="submit" class="button" value="Take For Project">
       </div>
     </div>
 <% end %>

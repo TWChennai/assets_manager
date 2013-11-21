@@ -1,34 +1,67 @@
 class HomeController < ApplicationController
-  def index
-    @projects = Project.all
-  end
+  before_filter :load_projects
 
   def assign
-    unless user_not_found || asset_not_found
-
-      if asset.assigned_to?(user)
-        asset.unassign!
-        flash[:success] = "Unassigned from #{user.name}"
-      else
-        asset.assign!(user, project)
-        flash[:success] = "Assigned to #{asset.owner.name}"
-      end
-
+    if user_not_found or asset_not_found
+      render :action => :index
+      return
     end
+
+    unassign if params[:submit] == 'Return'
+    assign_to_me if params[:submit] == 'Take For Yourself'
+
+    if params[:submit] == 'Take For Project'
+      if project_not_found
+        render :action => :index
+        return
+      end
+      assign_to_project
+    end
+
     redirect_to :action => :index
   end
 
   private
+
+  def load_projects
+    @projects = Project.all
+  end
+
+  def unassign
+    message = "#{asset.name} returned by #{user.name}"
+    message << ". Was used by #{asset.owner.name}" if asset.owner
+    asset.unassign!
+    flash[:success] = message
+  end
+
+  def assign_to_me
+    asset.assign!(user, nil)
+    message = "#{asset.name} assigned to #{asset.owner.name}"
+    flash[:success] = message
+  end
+
+  def assign_to_project
+    asset.assign!(user, project)
+    flash[:success] = "#{asset.name} assigned to #{asset.owner.name}"
+  end
+
   def asset_not_found
     unless asset
-      flash[:alert] = 'Asset not found'
+      flash.now[:alert] = 'Asset not found'
       true
     end
   end
 
   def user_not_found
     unless user
-      flash[:alert] = 'User not found'
+      flash.now[:alert] = 'User not found'
+      true
+    end
+  end
+
+  def project_not_found
+    unless project
+      flash.now[:alert] = 'Please select a project'
       true
     end
   end
