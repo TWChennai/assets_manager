@@ -36,12 +36,14 @@ class HomeController < ApplicationController
 
   def assign_to_me
     asset.assign!(user, nil)
+    UserMailer.asset_assigned_to_user(asset).deliver!
     message = "#{asset.name} assigned to #{asset.owner.name}"
     flash[:success] = message
   end
 
   def assign_to_project
     asset.assign!(user, project)
+    UserMailer.asset_assigned_to_project(asset).deliver!
     flash[:success] = "#{asset.name} assigned to #{asset.owner.name}"
   end
 

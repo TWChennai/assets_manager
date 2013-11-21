@@ -25,7 +25,7 @@ ActiveAdmin.register User do
       row :name
     end
 
-    table_for user.assets do
+    table_for user.owned_assets do
       column :serial_number
       column :bar_code
       column :asset_type
