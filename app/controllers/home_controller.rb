@@ -8,9 +8,9 @@ class HomeController < ApplicationController
     end
 
     unassign if params[:submit] == 'Return'
-    assign_to_me if params[:submit] == 'Take For Yourself'
+    assign_to_me if params[:submit] == 'Assign to Yourself'
 
-    if params[:submit] == 'Take For Project'
+    if params[:submit] == 'Assign to Project'
       if project_not_found
         render :action => :index
         return

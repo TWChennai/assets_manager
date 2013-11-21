@@ -31,21 +31,21 @@
     </div>
     <div class="row">
       <div class="small-3 columns">
-        <label for="right-label" class="right inline">Assign to Project (Optional)</label>
+        <label for="right-label" class="right inline">Assign to Project</label>
       </div>
       <div class="small-9 columns">
-        <%= select_tag 'project_id', options_from_collection_for_select(@projects, :id, :name), :include_blank => true %>
+        <%= select_tag 'project_id', options_from_collection_for_select(@projects, :id, :name), :prompt => 'No Project (for individuals)' %>
       </div>
     </div>
     <div class="row">
       <div class="small-4 columns text-center">
-        <input type="submit" name="submit" class="button" value="Take For Yourself">
-      </div>
-      <div class="small-4 columns text-center">
         <input type="submit" name="submit" class="button" value="Return">
       </div>
       <div class="small-4 columns text-center">
-        <input type="submit" name="submit" class="button" value="Take For Project">
+        <input type="submit" name="submit" class="button" value="Assign to Project">
+      </div>
+      <div class="small-4 columns text-center">
+        <input type="submit" name="submit" class="button" value="Assign to Yourself">
       </div>
     </div>
 <% end %>

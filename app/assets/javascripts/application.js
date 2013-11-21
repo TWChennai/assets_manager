@@ -17,3 +17,7 @@
 //= require_tree .
 
 $(document).foundation();
+
+$(document).ready(function () {
+  $(".alert-box").fadeOut(10000);
+});
