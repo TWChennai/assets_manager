@@ -18,6 +18,7 @@ ActiveAdmin.register Asset do
     column :asset_type
     column :status
     column :brand
+    column :project
     column :user do |a|
       a.user.try &:name
     end
