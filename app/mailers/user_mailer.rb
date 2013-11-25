@@ -9,6 +9,6 @@ class UserMailer < ActionMailer::Base
 
   def asset_assigned_to_project(asset)
     @asset = asset
-    mail :to => asset.owner.email, :subject => "Your team have been assigned a new #{asset.name}"
+    mail :to => asset.owner.email, :subject => "Your team has been assigned a new #{asset.name}"
   end
 end
