@@ -28,8 +28,11 @@ ActiveAdmin.register Asset do
   end
 
   action_item :only => :show do
-    link_to 'Add an Asset', new_admin_asset_path
     link_to 'Unassign', unassign_admin_asset_path(params[:id]), :method => :put
+  end
+
+  action_item :only => :show do
+    link_to 'Add an Asset', new_admin_asset_path
   end
 
   member_action :unassign, :method => :put do

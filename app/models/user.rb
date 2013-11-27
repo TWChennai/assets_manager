@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_protected
 
+  default_scope { order :name }
+
   has_many :assets
 
   validates :name, :employee_id,
