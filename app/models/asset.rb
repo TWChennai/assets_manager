@@ -14,7 +14,7 @@ class Asset < ActiveRecord::Base
 
   VALID_STATUSES = [Status::ASSIGNED, Status::IN_STOCK, Status::OUT_OF_ORDER]
 
-  validates :status, :asset_type, :bar_code, :serial_number,
+  validates :status, :asset_type, :bar_code,
             :presence => true
 
   validates :bar_code,
