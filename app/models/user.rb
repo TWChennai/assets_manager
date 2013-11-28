@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   validates :name, :employee_id,
             :presence => true
 
+  def self.admins
+    where(:admin => true)
+  end
+
   def email
     "#{employee_id}@thoughtworks.com"
   end

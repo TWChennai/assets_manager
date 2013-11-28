@@ -7,6 +7,7 @@ ActiveAdmin.register User do
     f.inputs 'Details' do
       f.input :name
       f.input :employee_id, :label => 'Employee ID'
+      f.input :admin
     end
     f.actions
   end
@@ -15,6 +16,7 @@ ActiveAdmin.register User do
     column :id
     column :employee_id
     column :name
+    column :admin
     default_actions
   end
 
@@ -23,6 +25,7 @@ ActiveAdmin.register User do
       row :id
       row('Employee ID') { user.employee_id }
       row :name
+      row :admin
     end
 
     table_for user.owned_assets do
