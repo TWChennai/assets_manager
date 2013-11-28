@@ -13,7 +13,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
 gem 'compass-rails'
-gem 'zurb-foundation', '~> 4.0.0'
+gem 'foundation-rails'
 
 group :development do
   gem 'capistrano', '~> 2.15.5'

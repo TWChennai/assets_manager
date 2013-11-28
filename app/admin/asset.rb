@@ -36,8 +36,8 @@ ActiveAdmin.register Asset do
   end
 
   member_action :unassign, :method => :put do
-    user = User.find(params[:id])
-    user.lock!
+    asset = Asset.find(params[:id])
+    asset.unassign!
     redirect_to({ :action => :show }, { :notice => 'Unassigned!' })
   end
 

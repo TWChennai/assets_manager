@@ -31,3 +31,5 @@ $(document).ready(function () {
 
 ga('create', 'UA-46071746-1', '10.16.1.198');
 ga('send', 'pageview');
+
+$(function(){ $(document).foundation(); });

@@ -1,0 +1,30 @@
+<% content_for :header do %>
+    <h1 class="docs header"><a href="/">Employee Dashboard</a></h1>
+<% end %>
+
+
+<%= form_tag '/users/search', :class => 'panel' do %>
+    <div class="row">
+      <div class="small-3 columns">
+        <label for="right-label" class="right inline">Employee ID</label>
+      </div>
+      <div class="small-9 columns">
+        <%= text_field_tag :id, params[:id], :placeholder => 'Employee ID' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns text-center">
+        <input type="submit" name="submit" class="button" value="Lookup">
+      </div>
+    </div>
+<% end %>
+
+<% if @user %>
+  <ul class="pricing-table">
+    <li class="title"><%= @user.employee_id %></li>
+    <li class="price"><%= @user.name %></li>
+    <% @user.owned_assets.each do |asset| %>
+      <li class="bullet-item"><%= asset.name %></li>
+    <% end %>
+  </ul>
+<% end %>

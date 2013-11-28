@@ -1,16 +1,6 @@
-<div class="row">
-  <div class="small-12 columns text-center">
+<% content_for :header do %>
     <h1 class="docs header"><a href="/">Open Accessories Manager</a></h1>
-  </div>
-</div>
-
-<div class="row">
-  <div class="small-12 columns text-center">
-  <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: "alert-box #{name}" %>
-  <% end -%>
-  </div>
-</div>
+<% end %>
 
 <%= form_tag '/assign', :class => 'panel' do %>
     <div class="row">

@@ -34,6 +34,10 @@ class Asset < ActiveRecord::Base
     where(:bar_code => bar_code).first
   end
 
+  def self.common
+    includes(:asset_type).where(:asset_types => {:common_resource => true })
+  end
+
   def assigned_to?(user)
     user.assets.include?(self)
   end
