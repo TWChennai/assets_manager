@@ -35,7 +35,7 @@ class Asset < ActiveRecord::Base
   end
 
   def self.common
-    includes(:asset_type).where(:asset_types => {:common_resource => true })
+    includes(:asset_type).where(:asset_types => {:common_resource => true }).order('asset_types.name')
   end
 
   def assigned_to?(user)
