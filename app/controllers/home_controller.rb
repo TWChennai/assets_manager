@@ -29,8 +29,10 @@ class HomeController < ApplicationController
 
   def unassign
     message = "#{asset.name} returned by #{user.name}"
-    message << ". Was used by #{asset.owner.name}" if asset.owner
+    current_owner = asset.owner
+    message << ". Was used by #{current_owner.name}" if current_owner
     asset.unassign!
+    UserMailer.asset_unassigned(asset, current_owner).deliver!
     flash[:success] = message
   end
 
