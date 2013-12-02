@@ -10,9 +10,10 @@ class Asset < ActiveRecord::Base
     ASSIGNED     = 'Assigned'
     IN_STOCK     = 'In Stock'
     OUT_OF_ORDER = 'Out of order'
+    IN_SERVICE   = 'In Service'
   end
 
-  VALID_STATUSES = [Status::ASSIGNED, Status::IN_STOCK, Status::OUT_OF_ORDER]
+  VALID_STATUSES = [Status::ASSIGNED, Status::IN_STOCK, Status::OUT_OF_ORDER, Status::IN_SERVICE]
 
   validates :status, :asset_type, :bar_code,
             :presence => true
