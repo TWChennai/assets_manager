@@ -7,6 +7,7 @@ ActiveAdmin.register Asset do
       f.input :brand
       f.input :status, :as => :select, :collection => Asset::VALID_STATUSES
       f.input :user
+      f.input :project
       f.input :description
     end
 
