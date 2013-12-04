@@ -6,6 +6,8 @@ class Asset < ActiveRecord::Base
   belongs_to :project
   belongs_to :brand
 
+  has_many :owner_history, :class_name => "AssetOwnerHistory"
+
   module Status
     ASSIGNED     = 'Assigned'
     IN_STOCK     = 'In Stock'
@@ -44,10 +46,12 @@ class Asset < ActiveRecord::Base
   end
 
   def unassign!
+    previous_owner = self.owner
     self.user     = nil
     self.project  = nil
     self[:status] = Status::IN_STOCK
     self.save!
+    AssetOwnerHistory.create_returned_event :owner => previous_owner, :asset => self
   end
 
   def assign!(user, project)
@@ -55,6 +59,7 @@ class Asset < ActiveRecord::Base
     self.project = project
     self.status  = Status::ASSIGNED
     self.save!
+    AssetOwnerHistory.create_assigned_event :owner => owner, :asset => self
   end
 
   def owner
