@@ -41,6 +41,4 @@ ActiveAdmin.register Asset do
     asset.unassign!
     redirect_to({ :action => :show }, { :notice => 'Unassigned!' })
   end
-
-
 end
