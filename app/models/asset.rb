@@ -15,6 +15,8 @@ class Asset < ActiveRecord::Base
     IN_SERVICE   = 'In Service'
   end
 
+  LOCATION = ["Chennai", "Bangalore"]
+
   VALID_STATUSES = [Status::ASSIGNED, Status::IN_STOCK, Status::OUT_OF_ORDER, Status::IN_SERVICE]
 
   validates :status, :asset_type, :bar_code,

@@ -4,6 +4,7 @@ ActiveAdmin.register Asset do
       f.input :bar_code
       f.input :serial_number
       f.input :asset_type
+      f.input :location, :as => :select, :collection => Asset::LOCATION
       f.input :brand
       f.input :status, :as => :select, :collection => Asset::VALID_STATUSES
       f.input :user
@@ -18,6 +19,7 @@ ActiveAdmin.register Asset do
     column :bar_code
     column :asset_type
     column :status
+    column :location
     column :brand
     column :project
     column :user do |a|
@@ -27,6 +29,10 @@ ActiveAdmin.register Asset do
 
     default_actions
   end
+
+  filter :location, :as => :select, :collection => Asset::LOCATION
+  preserve_default_filters!
+  
 
   action_item :only => :show do
     link_to 'Unassign', unassign_admin_asset_path(params[:id]), :method => :put
