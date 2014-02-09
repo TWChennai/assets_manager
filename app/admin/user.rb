@@ -28,11 +28,13 @@ ActiveAdmin.register User do
       row :admin
     end
 
-    table_for user.owned_assets do
+    table_for user.owned_assets, :class => 'assets' do
       column do |asset|
         warrenty_link(asset, asset.serial_number)
       end
-      column :bar_code
+      column do |asset|
+        link_to asset.bar_code, admin_asset_path(asset), :class => asset.status.underscore.gsub(/\s/, '_')
+      end
       column :asset_type
     end
   end
