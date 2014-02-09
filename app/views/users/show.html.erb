@@ -24,7 +24,7 @@
     <li class="title"><%= @user.employee_id %></li>
     <li class="price"><%= @user.name %></li>
     <% @user.owned_assets.each do |asset| %>
-      <li class="bullet-item"><%= asset.name %></li>
+      <li class="bullet-item"><%= warrenty_link(asset, asset.name) %></li>
     <% end %>
   </ul>
 <% end %>

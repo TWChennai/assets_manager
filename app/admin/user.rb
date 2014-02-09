@@ -29,7 +29,9 @@ ActiveAdmin.register User do
     end
 
     table_for user.owned_assets do
-      column :serial_number
+      column do |asset|
+        warrenty_link(asset, asset.serial_number)
+      end
       column :bar_code
       column :asset_type
     end
