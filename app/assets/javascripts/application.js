@@ -19,8 +19,12 @@
 $(document).foundation();
 
 $(document).ready(function () {
-  $(".alert-box").fadeOut(10000);
-  $("#employee_id").focus();
+  $('.alert-box').fadeOut(10000);
+  $('#employee_id').focus();
+
+  $('.location-filter').on('change', function(){
+    window.location.search = "?location=" + this.value;
+  });
 });
 
 

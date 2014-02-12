@@ -11,3 +11,14 @@
  *= require_self
  *= require foundation_and_overrides
  */
+
+.location-filter {
+  margin-top: 20px;
+  opacity: 0.3;
+  transition: all 1s;
+  -webkit-transition: all 1s; /* Safari */
+}
+
+.location-filter:hover{
+  opacity: 1;
+}

@@ -1,5 +1,8 @@
 <% content_for :header do %>
-    <h1 class="docs header"><a href="/">Accessori’Pod</a></h1>
+  <div class="right row">
+    <%= select_tag :location, options_from_collection_for_select(Location.all, :name, :name), :include_blank => true, :class => "location-filter" %>
+  </div>
+  <h1 class="docs header"><a href="/">Accessori’Pod</a></h1>
 <% end %>
 
 <%= form_tag '/assign', :class => 'panel' do %>

@@ -24,7 +24,8 @@ class HomeController < ApplicationController
   private
 
   def load_projects
-    @projects = Project.all
+    @projects = Project.scoped
+    @projects = @projects.where(:location => Location.with_name(params[:location])) if params[:location].present?
   end
 
   def unassign

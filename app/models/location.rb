@@ -4,7 +4,11 @@ class Location < ActiveRecord::Base
   validates :name,
             :presence => true
 
+  def self.with_name(name)
+    where(:name => name.to_s.titleize).first
+  end
+
   def self.const_missing(sym)
-    const_set(sym, where(:name => sym.to_s.titleize))
+    const_set sym, with_name(sym)
   end
 end

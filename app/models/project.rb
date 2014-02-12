@@ -4,8 +4,9 @@ class Project < ActiveRecord::Base
   default_scope { order :name }
 
   has_many :assets
+  belongs_to :location
 
-  validates :email, :name,
+  validates :email, :name, :location,
             :presence =>  true
 
 end
