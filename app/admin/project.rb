@@ -4,6 +4,7 @@ ActiveAdmin.register Project do
       row :id
       row :name
       row :email
+      row :location
     end
 
     table_for project.assets do
