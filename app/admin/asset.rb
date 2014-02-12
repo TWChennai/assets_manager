@@ -1,10 +1,11 @@
 ActiveAdmin.register Asset do
+  
   form do |f|
     f.inputs 'Details' do
       f.input :bar_code
       f.input :serial_number
       f.input :asset_type
-      f.input :location, :as => :select, :collection => Asset::LOCATION
+      f.input :location
       f.input :brand
       f.input :status, :as => :select, :collection => Asset::VALID_STATUSES
       f.input :user

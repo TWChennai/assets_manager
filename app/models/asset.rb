@@ -5,6 +5,7 @@ class Asset < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
   belongs_to :brand
+  belongs_to :location
 
   has_many :owner_history, :class_name => "AssetOwnerHistory"
 
@@ -19,7 +20,7 @@ class Asset < ActiveRecord::Base
 
   VALID_STATUSES = [Status::ASSIGNED, Status::IN_STOCK, Status::OUT_OF_ORDER, Status::IN_SERVICE]
 
-  validates :status, :asset_type, :bar_code,
+  validates :status, :asset_type, :bar_code, :location,
             :presence => true
 
   validates :bar_code,
