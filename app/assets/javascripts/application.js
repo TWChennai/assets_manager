@@ -23,7 +23,7 @@ $(document).ready(function () {
   $('#employee_id').focus();
 
   $('.location-filter').on('change', function(){
-    window.location.search = "?location=" + this.value;
+    window.location = "/?location=" + this.value;
   });
 });
 
