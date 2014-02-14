@@ -1,11 +1,12 @@
 <% content_for :header do %>
   <div class="right row">
-    <%= select_tag :location, options_from_collection_for_select(Location.all, :name, :name), :include_blank => true, :class => "location-filter" %>
+    <%= select_tag :location, options_from_collection_for_select(Location.all, :name, :name, params[:location]), :include_blank => true, :class => "location-filter" %>
   </div>
   <h1 class="docs header"><a href="/">Accessori’Pod</a></h1>
 <% end %>
 
 <%= form_tag '/assign', :class => 'panel' do %>
+    <%= hidden_field_tag :location, params[:location] %>
     <div class="row">
       <div class="small-3 columns">
         <label for="right-label" class="right inline">Employee ID</label>

@@ -31,10 +31,6 @@ ActiveAdmin.register Asset do
     default_actions
   end
 
-  filter :location, :as => :select, :collection => Asset::LOCATION
-  preserve_default_filters!
-  
-
   action_item :only => :show do
     link_to 'Unassign', unassign_admin_asset_path(params[:id]), :method => :put
   end

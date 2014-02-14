@@ -18,7 +18,7 @@ class HomeController < ApplicationController
       assign_to_project
     end
 
-    redirect_to :action => :index
+    redirect_to :action => :index, :location => params[:location]
   end
 
   private
