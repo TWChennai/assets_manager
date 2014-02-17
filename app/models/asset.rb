@@ -37,7 +37,7 @@ class Asset < ActiveRecord::Base
   end
 
   def self.by_bar_code(bar_code)
-    where(:bar_code => bar_code).first
+    where(["LOWER(bar_code) = ?", bar_code.downcase]).first
   end
 
   def self.common
