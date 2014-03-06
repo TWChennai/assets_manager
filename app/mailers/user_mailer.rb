@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
-  default :from => 'accessoripod@thoughtworks.com',
-          :cc   => ->(_) { admin_emails }
+  default :from   => "Accessori’Pod <accessoripod@thoughtworks.com>",
+          :cc     => "accessoripod@thoughtworks.com"
 
   def asset_assigned_to_user(asset)
     @asset = asset
