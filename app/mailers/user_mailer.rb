@@ -21,6 +21,12 @@ class UserMailer < ActionMailer::Base
          :subject => "You have returned #{asset.name}"
   end
 
+  def asset_borrowed_not_returned(asset)
+    @asset = asset
+    mail :to => asset.owner.email,
+         :subject => "You have not returned the borrowed #{asset.name}"
+  end
+
   private
   def admin_emails
     User.admins.map(&:email)

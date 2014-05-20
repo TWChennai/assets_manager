@@ -66,6 +66,16 @@ class Asset < ActiveRecord::Base
     user.assets.include?(self)
   end
 
+  def borrowed?
+    status == Status::BORROWED
+  end
+
+  def assign_permanent!
+    return unless self.user
+    self[:status] = Status::ASSIGNED
+    save!
+  end
+
   def unassign!
     previous_owner = self.owner
     self.user     = nil

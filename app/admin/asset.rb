@@ -39,9 +39,19 @@ ActiveAdmin.register Asset do
     link_to 'Add an Asset', new_admin_asset_path
   end
 
+  action_item :only => :show, :if => proc{ asset.borrowed? } do
+    link_to 'Assign Permanently', assign_permanent_admin_asset_path(params[:id]), :method => :put
+  end
+
   member_action :unassign, :method => :put do
     asset = Asset.find(params[:id])
     asset.unassign!
     redirect_to({ :action => :show }, { :notice => 'Unassigned!' })
+  end
+
+  member_action :assign_permanent, :method => :put do
+    asset = Asset.find(params[:id])
+    asset.assign_permanent!
+    redirect_to({ :action => :show }, { :notice => 'Assigned Permanently' })
   end
 end
