@@ -11,6 +11,7 @@ class Asset < ActiveRecord::Base
 
   module Status
     ASSIGNED     = 'Assigned'
+    BORROWED     = 'Borrowed'
     IN_STOCK     = 'In Stock'
     OUT_OF_ORDER = 'Out of order'
     IN_SERVICE   = 'In Service'
@@ -74,10 +75,10 @@ class Asset < ActiveRecord::Base
     AssetOwnerHistory.create_returned_event :owner => previous_owner, :asset => self
   end
 
-  def assign!(user, project)
+  def assign!(user, project = nil, borrow: false)
     self.user    = user
     self.project = project
-    self.status  = Status::ASSIGNED
+    self.status  = borrow ? Status::BORROWED : Status::ASSIGNED
     self.save!
     AssetOwnerHistory.create_assigned_event :owner => owner, :asset => self
   end

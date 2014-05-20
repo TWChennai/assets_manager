@@ -9,6 +9,7 @@ class HomeController < ApplicationController
 
     unassign if params[:submit] == 'Return'
     assign_to_me if params[:submit] == 'Assign to Yourself'
+    assign_to_me(:borrow => true) if params[:submit] == 'Borrow Temporarily'
 
     if params[:submit] == 'Assign to Project'
       if project_not_found
@@ -37,8 +38,8 @@ class HomeController < ApplicationController
     flash[:success] = message
   end
 
-  def assign_to_me
-    asset.assign!(user, nil)
+  def assign_to_me(borrow: false)
+    asset.assign!(user, borrow: borrow)
     UserMailer.asset_assigned_to_user(asset).deliver!
     message = "#{asset.name} assigned to #{asset.owner.name}"
     flash[:success] = message
