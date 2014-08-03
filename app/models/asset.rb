@@ -1,6 +1,8 @@
 class Asset < ActiveRecord::Base
   attr_protected
 
+  default_scope { includes :asset_type, :brand, :location, :user }
+
   belongs_to :asset_type
   belongs_to :user
   belongs_to :project
