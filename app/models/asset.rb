@@ -3,6 +3,8 @@ class Asset < ActiveRecord::Base
 
   default_scope { includes :asset_type, :brand, :location, :user }
 
+  scope :assigned_to_individuals, -> { where(project_id: nil) }
+
   belongs_to :asset_type
   belongs_to :user
   belongs_to :project
@@ -35,10 +37,6 @@ class Asset < ActiveRecord::Base
     true
   end
 
-  def self.assigned_to_individuals
-    where(:project_id => nil)
-  end
-
   def self.by_bar_code(bar_code)
     where(["LOWER(bar_code) = ?", bar_code.downcase]).first
   end
@@ -48,12 +46,14 @@ class Asset < ActiveRecord::Base
   end
 
   def self.indivduals_usage_summary
-    assigned_to_individuals
-    .select('users.name as user_name, users.id as user_id, asset_types.name as asset_name, count(*) as count')
-    .joins([:asset_type, :user])
-    .where(:status => Status::ASSIGNED)
-    .group('users.id, users.name, asset_types.name')
-    .order('count desc')
+    self
+      .unscoped
+      .assigned_to_individuals
+      .select('users.name as user_name, users.id as user_id, asset_types.name as asset_name, count(*) as count')
+      .joins([:asset_type, :user])
+      .where(:status => Status::ASSIGNED)
+      .group('users.id, users.name, asset_types.name')
+      .order('count desc')
   end
 
   def self.common_usage_summary
