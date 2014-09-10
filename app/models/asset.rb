@@ -23,7 +23,7 @@ class Asset < ActiveRecord::Base
 
   LOCATION = ["Chennai", "Bangalore"]
 
-  VALID_STATUSES = [Status::ASSIGNED, Status::IN_STOCK, Status::OUT_OF_ORDER, Status::IN_SERVICE]
+  VALID_STATUSES = [Status::ASSIGNED, Status::BORROWED, Status::IN_STOCK, Status::OUT_OF_ORDER, Status::IN_SERVICE]
 
   validates :status, :asset_type, :bar_code, :location,
             :presence => true
@@ -87,7 +87,7 @@ class Asset < ActiveRecord::Base
     AssetOwnerHistory.create_returned_event :owner => previous_owner, :asset => self
   end
 
-  def assign!(user, project = nil, borrow: false)
+  def assign!(user, project = nil, borrow = false)
     self.user    = user
     self.project = project
     self.status  = borrow ? Status::BORROWED : Status::ASSIGNED

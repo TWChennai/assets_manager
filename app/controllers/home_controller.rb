@@ -39,7 +39,7 @@ class HomeController < ApplicationController
   end
 
   def assign_to_me(borrow: false)
-    asset.assign!(user, borrow: borrow)
+    asset.assign!(user, project = nil, borrow = borrow)
     UserMailer.asset_assigned_to_user(asset).deliver!
     message = "#{asset.name} assigned to #{asset.owner.name}"
     flash[:success] = message
