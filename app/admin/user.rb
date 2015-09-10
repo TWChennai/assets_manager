@@ -1,7 +1,10 @@
 ActiveAdmin.register User do
+  menu parent: 'People', priority: 1
+  permit_params :name, :employee_id, :admin
 
-  filter :name
-  filter :employee_id, :label => 'Employee ID'
+  filter :name, as: :select, multiple: true, input_html: { class: 'selectize' }
+  # TODO: Can we convert this to use employee name?
+  filter :employee_id, :label => 'Employee ID', as: :select, multiple: true, input_html: { class: 'selectize' }
 
   form do |f|
     f.inputs 'Details' do
@@ -17,13 +20,13 @@ ActiveAdmin.register User do
     column :employee_id
     column :name
     column :admin
-    default_actions
+    actions
   end
 
   show do
     attributes_table do
       row :id
-      row('Employee ID') { user.employee_id }
+      row('Employee ID', &:employee_id)
       row :name
       row :admin
     end

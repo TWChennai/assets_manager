@@ -7,11 +7,14 @@ class HomeController < ApplicationController
       return
     end
 
-    unassign if params[:submit] == 'Return'
-    assign_to_me if params[:submit] == 'Assign to Yourself'
-    assign_to_me(:borrow => true) if params[:submit] == 'Borrow Temporarily'
-
-    if params[:submit] == 'Assign to Project'
+    case params[:submit]
+    when 'Return'
+      unassign
+    when 'Assign to Yourself'
+      assign_to_me
+    when 'Borrow Temporarily'
+      assign_to_me(:borrow => true)
+    when 'Assign to Project'
       if project_not_found
         render :action => :index
         return
@@ -25,8 +28,8 @@ class HomeController < ApplicationController
   private
 
   def load_projects
-    @projects = Project.scoped
-    @projects = @projects.where(:location => Location.with_name(params[:location])) if params[:location].present?
+    @projects = Project.all
+    @projects = @projects.where(:location => Location.with_name(params[:location])) unless params[:location].blank?
   end
 
   def unassign
@@ -73,14 +76,14 @@ class HomeController < ApplicationController
   end
 
   def user
-    User.by_employee_id(params[:employee_id])
+    User.by_employee_id(params[:employee_id]) unless params[:employee_id].blank?
   end
 
   def asset
-    @asset ||= Asset.by_bar_code(params[:asset_bar_code])
+    @asset ||= Asset.by_bar_code(params[:asset_bar_code]) unless params[:asset_bar_code].blank?
   end
 
   def project
-    @project ||= (params[:project_id] && Project.where(:id => params[:project_id]).first)
+    @project ||= Project.where(:id => params[:project_id]).first unless params[:project_id].blank?
   end
 end

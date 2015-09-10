@@ -17,7 +17,7 @@ ActiveAdmin.register AssetOwnerHistory do
     column :owner
     column :event
     column :created_at
-    default_actions
+    actions
   end
 
   csv do

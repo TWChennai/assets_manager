@@ -1,5 +1,12 @@
 ActiveAdmin.register Asset do
-  
+  permit_params :bar_code, :serial_number, :asset_type_id, :location_id, :brand_id, :status, :user_id, :project_id, :description
+
+  controller do
+    def scoped_collection
+      super.includes(:location, :brand, :project, :user)
+    end
+  end
+
   form do |f|
     f.inputs 'Details' do
       f.input :bar_code
@@ -8,7 +15,7 @@ ActiveAdmin.register Asset do
       f.input :location
       f.input :brand
       f.input :status, :as => :select, :collection => Asset::VALID_STATUSES
-      f.input :user
+      f.input :user, as: :select, input_html: { class: 'selectize' }
       f.input :project
       f.input :description
     end
@@ -23,12 +30,10 @@ ActiveAdmin.register Asset do
     column :location
     column :brand
     column :project
-    column :user do |a|
-      a.user.try &:name
-    end
+    column :user
     column :serial_number
 
-    default_actions
+    actions
   end
 
   action_item :only => :show do

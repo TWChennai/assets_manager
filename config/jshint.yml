@@ -1,0 +1,32 @@
+files: ["app/assets/**/*.js"] # No need to put app/assets/ or vendor/assets here
+exclude_paths: ['*/vendor/*']
+options:
+  boss:       true
+  browser:    true
+  curly:      true
+  eqeqeq:     true
+  eqnull:     true
+  expr:       true
+  immed:      true
+  indent:     2
+  latedef:    true
+  newcap:     true
+  noarg:      true
+  sub:        true
+  trailing:   true
+  undef:      true
+  # unused:     true
+  bitwise       : true
+  forin         : true
+  noempty       : true
+  nonew         : true
+  plusplus      : true
+  regexp        : true
+  # strict        : true
+  quotmark      : "single"
+  # passfail      : false
+  maxerr: 1000
+  globals:
+    d3:   true
+    jQuery:   true
+    "$":      true

@@ -1,8 +1,31 @@
+# == Schema Information
+#
+# Table name: assets
+#
+#  id            :integer          not null, primary key
+#  bar_code      :string
+#  asset_type_id :integer
+#  status        :string
+#  description   :text
+#  user_id       :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#  serial_number :string
+#  project_id    :integer
+#  brand_id      :integer
+#  location_id   :integer
+#
+# Indexes
+#
+#  index_assets_on_asset_type_id  (asset_type_id)
+#  index_assets_on_brand_id       (brand_id)
+#  index_assets_on_location_id    (location_id)
+#  index_assets_on_project_id     (project_id)
+#  index_assets_on_user_id        (user_id)
+#
+
 class Asset < ActiveRecord::Base
-  attr_protected
-
-  default_scope { includes :asset_type, :brand, :location, :user }
-
+  default_scope { includes :asset_type }
   scope :assigned_to_individuals, -> { where(project_id: nil) }
 
   belongs_to :asset_type
@@ -21,15 +44,14 @@ class Asset < ActiveRecord::Base
     IN_SERVICE   = 'In Service'
   end
 
+  # TODO: Move these to the Location model
   LOCATION = ["Chennai", "Bangalore"]
 
   VALID_STATUSES = [Status::ASSIGNED, Status::BORROWED, Status::IN_STOCK, Status::OUT_OF_ORDER, Status::IN_SERVICE]
 
-  validates :status, :asset_type, :bar_code, :location,
-            :presence => true
+  validates :status, :asset_type, :bar_code, :location, :presence => true
 
-  validates :bar_code,
-            :uniqueness => true
+  validates :bar_code, uniqueness: { case_sensitive: false }
 
   before_save do |record|
     record.status = Status::ASSIGNED if record.user_id_changed? && record.user_id.present?
@@ -37,6 +59,7 @@ class Asset < ActiveRecord::Base
     true
   end
 
+  # TODO: Convert to scopes
   def self.by_bar_code(bar_code)
     where(["LOWER(bar_code) = ?", bar_code.downcase]).first
   end
