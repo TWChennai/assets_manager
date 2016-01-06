@@ -9,6 +9,7 @@ class AssetsController < ApplicationController
 
   def show
     @asset = Asset.by_bar_code(params[:id])
+    render :json => @asset if request.format.symbol == :json
     flash.now[:alert] = "Asset with barcode #{params[:id]} not found" unless @asset.present?
   end
 
