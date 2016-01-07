@@ -8,7 +8,7 @@ gem 'turbolinks', '~> 2.5'
 # Use puma as the app server
 gem 'puma', '~> 2.13.4'
 gem 'devise', '~> 3.5.2'
-gem 'activeadmin', github: 'thoughtworks/activeadmin', branch: 'search-filters-multiple-values'
+gem 'activeadmin', github: 'thoughtworks/activeadmin', branch: 'master'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '~> 2.7.2'
