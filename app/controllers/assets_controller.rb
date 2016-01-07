@@ -9,10 +9,11 @@ class AssetsController < ApplicationController
 
   def show
     @asset = Asset.by_bar_code(params[:id])
-    if request.format.symbol == :json
-      render :json => {:asset_name => @asset.name , :owner_info => {:employee_id => @asset.owner.employee_id , :name => @asset.owner.name }}
+
+    respond_to do |format|
+      format.html { flash.now[:alert] = "Asset with barcode #{params[:id]} not found" unless @asset.present? }
+      format.json { render json: { asset_name: @asset.try(:name) , owner_info: {employee_id: @asset.try(:owner).try(:employee_id) , name: @asset.try(:owner).try(:name) } } }
     end
-    flash.now[:alert] = "Asset with barcode #{params[:id]} not found" unless @asset.present?
   end
 
   def common
