@@ -32,7 +32,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     apt-get -y update
     apt-get -y install \
       build-essential git libxml2-dev libxslt1-dev \
-      zlib1g-dev ruby2.2 ruby2.2-dev ruby-switch nodejs curl wget memcached \
+      zlib1g-dev ruby2.3 ruby2.3-dev ruby-switch nodejs curl wget memcached \
       postgresql postgresql-contrib postgresql-client libpq-dev
 
     echo "Setting up postgres authentication..."

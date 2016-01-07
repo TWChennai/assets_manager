@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
+ruby '2.3.0'
 
 gem 'rails', '4.2.4'
 gem 'pg'    # TODO: Specify version
@@ -8,7 +8,8 @@ gem 'turbolinks', '~> 2.5'
 # Use puma as the app server
 gem 'puma', '~> 2.13.4'
 gem 'devise', '~> 3.5.2'
-gem 'activeadmin', github: 'thoughtworks/activeadmin', branch: 'master'
+# gem 'activeadmin', github: 'thoughtworks/activeadmin', branch: 'master'
+gem 'activeadmin', github: 'activeadmin/activeadmin'
 
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '~> 2.7.2'
@@ -35,11 +36,13 @@ group :development do
   gem 'rack-mini-profiler', '~> 0.9.7'
   gem 'binding_of_caller', '~> 0.7.2'
   gem 'rubocop', '~> 0.34', require: false
-  gem 'lol_dba', '~> 2.0.0'
-  gem 'jshint', '~> 1.4.0'
-  gem 'active_sanity', '~> 0.3.0'
 
   gem 'letter_opener', '~> 1.4.1'
+
+  # The following are only needed from time-to-time
+  # gem 'lol_dba', '~> 2.0.0'
+  # gem 'active_sanity', '~> 0.3.0'
+  # gem 'jshint', '~> 1.4.0'
 end
 
 group :development, :test do
@@ -48,15 +51,14 @@ group :development, :test do
   gem 'byebug', '~> 6.0.2'
   gem 'better_errors', '~> 2.1.1'
   gem 'pry-rails', '~> 0.3.2'
-  gem 'did_you_mean', '~> 0.10.0'
   gem 'annotate', '~> 2.6.5'
   gem 'rspec-rails', '~> 3.3.3'
   # gem 'rspec-instafail', '~> 0.2.5'
   gem 'bullet', '~> 4.14.4'
-  gem 'metric_fu', '~> 4.12.0'
+  gem 'metric_fu', '~> 4.12.0', require: false
   gem 'web-console', '~> 2.2.1'
-  gem 'rails_instrument', '~> 0.0.4'
-  gem 'faker', '~> 1.5.0'
+  gem 'rails_instrument', '~> 0.0.4', require: false
+  gem 'faker', '~> 1.5.0', require: false
 
   # Use debugger
   # gem 'debugger'

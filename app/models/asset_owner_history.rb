@@ -13,10 +13,8 @@
 # Indexes
 #
 #  index_asset_owner_histories_on_asset_id                 (asset_id)
-#  index_asset_owner_histories_on_owner_id_and_owner_type  (owner_id,owner_type)
 #  index_asset_owner_histories_on_owner_type_and_owner_id  (owner_type,owner_id)
 #
-
 
 class AssetOwnerHistory < ActiveRecord::Base
   belongs_to :owner, polymorphic: true

@@ -1,0 +1,5 @@
+app/assets/javascripts/ga.js
+public/assets/
+coverage/
+vendor/
+tmp/
