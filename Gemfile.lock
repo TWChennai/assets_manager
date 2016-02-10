@@ -17,7 +17,7 @@ GIT
       sass-rails
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     abstract_type (0.0.7)
     actionmailer (4.2.4)
